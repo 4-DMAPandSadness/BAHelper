@@ -2,13 +2,12 @@ from PyQt5 import QtWidgets as QW
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor, QGuiApplication
-import numpy as np
 import pandas as pd
 
 class MainWindow(QW.QMainWindow):
     def __init__(self): 
         super(MainWindow,self).__init__()
-        self.ui = loadUi("BAHelper.ui",self)
+        self.ui = loadUi("BAHelper_ui.ui",self)
         self.startUp()
         self.functionality()
   
@@ -22,16 +21,8 @@ class MainWindow(QW.QMainWindow):
 
         """
         self.default_palette = QGuiApplication.palette()
-        self.finalInputs = {}
-        self.ui.input_tree.header().setSectionResizeMode(QW.QHeaderView.ResizeToContents)
-        self.radios = QW.QButtonGroup(self)
-        self.radios.addButton(self.ui.GLA_radio)
-        self.radios.addButton(self.ui.GTA_radio_preset_model)
-        self.radios.addButton(self.ui.GTA_radio_custom_model)
-        self.radios.addButton(self.ui.GTA_radio_custom_matrix)
-        self.ui.stack.setCurrentIndex(0)
-        self.ui.Theme.setChecked(False)
-        self.changeTheme()
+        # self.ui.Theme.setChecked(False)
+        # self.changeTheme()
         
     def onQuit(self):
         """
@@ -54,8 +45,42 @@ class MainWindow(QW.QMainWindow):
 
         """
         BAHelper.aboutToQuit.connect(self.onQuit)
+        self.ui.actionLight.triggered.connect(lambda: self.changeTheme("light"))
+        self.ui.actionDark.triggered.connect(lambda: self.changeTheme("dark"))
+        self.ui.actionGerman.triggered.connect()
+        self.ui.actionEnglish.triggered.connect()
+        self.hpToDict("HPeng.txt")
+        self.buttons()
         
-    def changeTheme(self):
+    def buttons(self):
+        hkey_x = 0
+        pkey_x = 0
+        for key in self.HP.keys():
+            checkBox = QW.QCheckBox(str(key))
+            if "H" in key:
+                if key[1] == "2":
+                    self.ui.hLayout.addWidget(checkBox,hkey_x,0)
+                elif key[1] == "3":
+                    self.ui.hLayout.addWidget(checkBox,hkey_x,1)
+                elif key[1] == "4":
+                    self.ui.hLayout.addWidget(checkBox,hkey_x,2)
+                else:
+                    self.ui.hLayout.addWidget(checkBox,hkey_x,3)
+                hkey_x += 1
+            elif "P" in key:
+                if key[1] == "1":
+                    self.ui.pLayout.addWidget(checkBox,pkey_x,0)
+                elif key[1] == "2":
+                    self.ui.pLayout.addWidget(checkBox,pkey_x,1)
+                elif key[1] == "3":
+                    self.ui.pLayout.addWidget(checkBox,pkey_x,2)
+                elif key[1] == "4":
+                    self.ui.pLayout.addWidget(checkBox,pkey_x,3)
+                else:
+                    self.ui.pLayout.addWidget(checkBox,pkey_x,4)
+                pkey_x += 1
+        
+    def changeTheme(self,theme):
         """
         Changes the colour theme of the program to either light or dark.
 
@@ -64,7 +89,7 @@ class MainWindow(QW.QMainWindow):
         None.
 
         """
-        if self.ui.Theme.isChecked() == True:
+        if theme == "light":
             BAHelper.setPalette(self.default_palette)
         else:
             darkmode = QPalette()
@@ -83,6 +108,24 @@ class MainWindow(QW.QMainWindow):
             darkmode.setColor(darkmode.HighlightedText, Qt.black)
             BAHelper.setPalette(darkmode)
         
+    def hpToDict(self,filename):
+        self.HP = pd.read_csv(filename, delimiter="\t", index_col=0, header=None).to_dict()[1]
+
+    def output(self):
+        if self.ui.language.text() == "german":
+            self.hpToDict("HPger.txt")
+        else:
+            self.hpToDict("HPeng.txt")
+        self.buttons()
+    #for every selected checkbox in h snetences
+    #  add to list
+    # dito for p sentences
+    # for every key in list
+    # give key \t value
+    # open popup mit ergebnissen
+    # copy to clipboard button?
+
+            
 #####################################APP#######################################            
             
 if __name__ == '__main__':

@@ -96,7 +96,7 @@ P280	Wear protective gloves/protective clothing/eye protection/face protection.
 P282	Wear cold insulating gloves and either face shield or eye protection.
 P283	Wear fire resistant or flame retardant clothing.
 P284	[In case of inadequate ventilation] wear respiratory protection.
-P231 + P232 Handle and store contents under inert gas/…. Protect from moisture.
+P231 + P232	Handle and store contents under inert gas/…. Protect from moisture.
 P301	IF SWALLOWED:
 P302	IF ON SKIN:
 P303	IF ON SKIN (or hair):
@@ -142,7 +142,7 @@ P380	Evacuate area.
 P381	In case of leakage, eliminate all ignition sources.
 P390	Absorb spillage to prevent material damage.
 P391	Collect spillage.
-P301 + P310 IF SWALLOWED: Immediately call a POISON CENTER/doctor/…
+P301 + P310	IF SWALLOWED: Immediately call a POISON CENTER/doctor/…
 P301 + P312	IF SWALLOWED: Call a POISON CENTER/doctor/… if you feel unwell.
 P301 + P330 + P331	IF SWALLOWED: rinse mouth. Do NOT induce vomiting.
 P302 + P334	IF ON SKIN: Immerse in cool water or wrap in wet bandages.
