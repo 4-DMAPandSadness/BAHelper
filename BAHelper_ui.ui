@@ -15,29 +15,21 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="pushResetButtons">
-      <property name="text">
-       <string>Reset Buttons</string>
+    <item row="2" column="0" colspan="4">
+     <widget class="QTextEdit" name="textOutput">
+      <property name="toolTip">
+       <string>Here all of your inputs will be displayed after pressing either &quot;Output&quot; button.</string>
       </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="pushClearConsole">
-      <property name="text">
-       <string>Clear Console</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QPushButton" name="pushOutput">
-      <property name="text">
-       <string>Output</string>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="1" column="0" colspan="2">
      <widget class="QGroupBox" name="Hsentences">
+      <property name="toolTip">
+       <string>Here you can select all H-sentences for each component of your experiment.</string>
+      </property>
       <property name="title">
        <string>H-sentences</string>
       </property>
@@ -53,7 +45,7 @@
             <x>0</x>
             <y>0</y>
             <width>362</width>
-            <height>205</height>
+            <height>189</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="hLayout"/>
@@ -65,6 +57,9 @@
     </item>
     <item row="1" column="2" colspan="2">
      <widget class="QGroupBox" name="Psentences">
+      <property name="toolTip">
+       <string>Here you can select all P-sentences for each component of your experiment.</string>
+      </property>
       <property name="title">
        <string>P-sentences</string>
       </property>
@@ -80,7 +75,7 @@
             <x>0</x>
             <y>0</y>
             <width>362</width>
-            <height>205</height>
+            <height>189</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="pLayout"/>
@@ -90,10 +85,60 @@
       </layout>
      </widget>
     </item>
-    <item row="2" column="0" colspan="4">
-     <widget class="QTextEdit" name="textOutput">
-      <property name="readOnly">
-       <bool>true</bool>
+    <item row="0" column="2">
+     <widget class="QLabel" name="labelOutput">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="pushCopy">
+      <property name="toolTip">
+       <string>This will copy all text that is currently visible on the output console.</string>
+      </property>
+      <property name="text">
+       <string>Copy to Clipboard</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="pushResetButtons">
+      <property name="toolTip">
+       <string>This unselects all of the checkboxes.</string>
+      </property>
+      <property name="text">
+       <string>Reset Buttons</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QPushButton" name="pushClearConsole">
+      <property name="toolTip">
+       <string>This removes all text from the output console.</string>
+      </property>
+      <property name="text">
+       <string>Clear Console</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="pushOutput">
+      <property name="toolTip">
+       <string>This will output only the currently selected short forms of the H&amp;P sentences. For example: &quot;H301, H314&quot; and &quot;P210, P200&quot;.</string>
+      </property>
+      <property name="text">
+       <string>Output Current Shorts</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="pushOutputAll">
+      <property name="toolTip">
+       <string>This will output the shortform and corresponding fulltext form of ALL SELECTED H&amp;P sentences during this session. For example: &quot;H301:Toxic if swallowed.,  H314: Causes severe skin burns and eye damage.&quot;.</string>
+      </property>
+      <property name="text">
+       <string>Output Full Sentences</string>
       </property>
      </widget>
     </item>
@@ -109,6 +154,9 @@
     </rect>
    </property>
    <widget class="QMenu" name="menuLanguage">
+    <property name="toolTip">
+     <string>Here you can change the language of the output for the H&amp;P sentences.</string>
+    </property>
     <property name="title">
      <string>Output Language</string>
     </property>
@@ -116,34 +164,76 @@
     <addaction name="actionEnglish"/>
    </widget>
    <widget class="QMenu" name="menuTheme">
+    <property name="toolTip">
+     <string>Here you can change the appearence of the app.</string>
+    </property>
     <property name="title">
      <string>Theme</string>
     </property>
     <addaction name="actionLight"/>
     <addaction name="actionDark"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="toolTip">
+     <string>Here you can find help, if something is not working or you don't understand something.</string>
+    </property>
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionUser_Manual"/>
+    <addaction name="actionSuggestions"/>
+   </widget>
    <addaction name="menuLanguage"/>
    <addaction name="menuTheme"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionGerman">
    <property name="text">
     <string>German</string>
    </property>
+   <property name="toolTip">
+    <string>Sets the output language to german.</string>
+   </property>
   </action>
   <action name="actionEnglish">
    <property name="text">
     <string>English</string>
+   </property>
+   <property name="toolTip">
+    <string>Sets the output language to english.</string>
    </property>
   </action>
   <action name="actionLight">
    <property name="text">
     <string>Light</string>
    </property>
+   <property name="toolTip">
+    <string>Sets the app into a light design.</string>
+   </property>
   </action>
   <action name="actionDark">
    <property name="text">
     <string>Dark</string>
+   </property>
+   <property name="toolTip">
+    <string>Sets the app into a dark design.</string>
+   </property>
+  </action>
+  <action name="actionUser_Manual">
+   <property name="text">
+    <string>User Manual</string>
+   </property>
+   <property name="toolTip">
+    <string>This will display a small guide on how to use this program.</string>
+   </property>
+  </action>
+  <action name="actionSuggestions">
+   <property name="text">
+    <string>Suggestions</string>
+   </property>
+   <property name="toolTip">
+    <string>This will display my email address, so you can contact me.</string>
    </property>
   </action>
  </widget>
